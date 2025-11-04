@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tech News Feed - October 2025</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<style>
+        /* CSS Variables */
+        :root {
+            --primary: #4f46e5;
+            --secondary: #06b6d4;
+            --success: #10b981;
+            --accent: #8b5cf6;
+            
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-900: #111827;
+            
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+            
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --transition: 250ms ease;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem;
+        }
+
+        /* Section Header */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-md);
+            font-size: 1.25rem;
+        }
+
+        .section-header.ai .section-icon {
+            background: var(--primary);
+        }
+
+        .section-header.tech .section-icon {
+            background: var(--secondary);
+        }
+
+        .section-header.dev .section-icon {
+            background: var(--accent);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .section-count {
+            background: var(--gray-100);
+            color: var(--gray-700);
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* News Card */
+        .news-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            transition: all var(--transition);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            line-height: 1.4;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .card-title i {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+
+        .ai-category .card-title i {
+            color: var(--primary);
+        }
+
+        .tech-category .card-title i {
+            color: var(--secondary);
+        }
+
+        .dev-category .card-title i {
+            color: var(--accent);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-summary {
+            color: var(--gray-700);
+            line-height: 1.7;
+            font-size: 0.9375rem;
+        }
+
+        .card-footer {
+            padding: 1.25rem 1.5rem;
+            background: var(--gray-50);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .read-more {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: gap var(--transition);
+        }
+
+        .ai-category .read-more {
+            color: var(--primary);
+        }
+
+        .tech-category .read-more {
+            color: var(--secondary);
+        }
+
+        .dev-category .read-more {
+            color: var(--accent);
+        }
+
+        .news-card:hover .read-more {
+            gap: 0.75rem;
+        }
+
+        .date-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+
+        .date-badge i {
+            color: var(--gray-400);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--gray-600);
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: var(--gray-300);
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .news-card {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .news-card:nth-child(1) { animation-delay: 0.1s; }
+        .news-card:nth-child(2) { animation-delay: 0.2s; }
+        .news-card:nth-child(3) { animation-delay: 0.3s; }
+        .news-card:nth-child(4) { animation-delay: 0.4s; }
+        .news-card:nth-child(5) { animation-delay: 0.5s; }
+        .news-card:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+<!-- Main Content -->
+<main class="container">
+<!-- AI News Section -->
+<section class="news-section">
+<div class="section-header ai">
+<div class="section-icon">
+<i class="fas fa-brain"></i>
+</div>
+<h2 class="section-title">Latest AI News</h2>
+<span class="section-count">5 Articles</span>
+</div>
+<div class="news-grid" id="ai-news-grid"></div>
+</section>
+<!-- Technology & IT News Section -->
+<section class="news-section">
+<div class="section-header tech">
+<div class="section-icon">
+<i class="fas fa-microchip"></i>
+</div>
+<h2 class="section-title">Tech, IT &amp; Aviation Infrastructure</h2>
+<span class="section-count">7 Articles</span>
+</div>
+<div class="news-grid" id="tech-news-grid"></div>
+</section>
+<!-- Programming & Development News Section -->
+<section class="news-section">
+<div class="section-header dev">
+<div class="section-icon">
+<i class="fas fa-code"></i>
+</div>
+<h2 class="section-title">Airline, Commercial &amp; Innovation</h2>
+<span class="section-count">5 Articles</span>
+</div>
+<div class="news-grid" id="dev-news-grid"></div>
+</section>
+</main>
+<script>
+        // News data from JSON
+        const newsData = {
+    "Month": "October",
+    "Year": "2025",
+    "Days": [
+        {
+            "Date": "2025-10-26",
+            "News": {
+                "LatestAINews": [
+                    {
+                        "NewsTitle": "OpenAI Sora-2",
+                        "NewsImage": "",
+                        "NewsLink": "https://openai.com/index/sora-2/",
+                        "NewsSummary": "OpenAI introduced Sora-2, a text-to-video model for high-fidelity simulation/visualization\u2014useful for scenario modeling, safety training, ops planning, and marketing."
+                    },
+                    {
+                        "NewsTitle": "OpenAI: Introducing Apps in ChatGPT",
+                        "NewsImage": "",
+                        "NewsLink": "https://openai.com/index/introducing-apps-in-chatgpt/",
+                        "NewsSummary": "Build and deploy custom apps within ChatGPT to power workflows like customer service, data analysis, and ops support\u2014rapid AI tool prototyping for airlines/airports."
+                    },
+                    {
+                        "NewsTitle": "Huawei Agentic AI Systems",
+                        "NewsImage": "",
+                        "NewsLink": "https://www.artificialintelligence-news.com/news/huawei-agentic-ai-systems/",
+                        "NewsSummary": "Agentic AI frameworks to automate complex processes/decisions, optimize resources, and move toward autonomous digital operations."
+                    },
+                    {
+                        "NewsTitle": "Nvidia GPUs Power Oracle Next-Gen Enterprise AI Services",
+                        "NewsImage": "",
+                        "NewsLink": "https://www.artificialintelligence-news.com/news/nvidia-gpus-power-oracle-next-gen-enterprise-ai-services/",
+                        "NewsSummary": "Oracle x Nvidia expand with OCI Zettascale10 clusters for large-scale training/inference; agentic workflows inside Oracle DBs for secure, high-performance AI."
+                    },
+                    {
+                        "NewsTitle": "DeepMind: Introducing Codemender\u2014An AI Agent for Code Security",
+                        "NewsImage": "",
+                        "NewsLink": "https://deepmind.google/discover/blog/introducing-codemender-an-ai-agent-for-code-security/",
+                        "NewsSummary": "Codemender detects and fixes software vulnerabilities automatically\u2014strengthening resilience of mission\u2011critical systems."
+                    }
+                ],
+                "LatestTechnologyAndITNews": [
+                    {
+                        "NewsTitle": "Jensen Huang: Nvidia\u2019s China Market Share Has Fallen to Zero",
+                        "NewsImage": "",
+                        "NewsLink": "https://www.tomshardware.com/tech-industry/jensen-huang-says-nvidia-china-market-share-has-fallen-to-zero",
+                        "NewsSummary": "Nvidia\u2019s share in China reportedly dropped from ~95% to zero due to export controls/regulations\u2014underscoring supply-chain/geopolitical risk."
+                    },
+                    {
+                        "NewsTitle": "EU Commences Roll Out of New Entry/Exit System (EES)",
+                        "NewsImage": "",
+                        "NewsLink": "https://centreforaviation.com/news/eu-commences-roll-out-of-new-entryexit-system-1335154?utm_source=capa&utm_medium=email&utm_campaign=CAPA%20Alerts",
+                        "NewsSummary": "Biometric EES across 29 Schengen states replaces manual stamping; airports adding kiosks/gates. Full implementation expected by Apr 2026."
+                    },
+                    {
+                        "NewsTitle": "SITA Introduces Updated Fibre-Optic Infrastructure Solution for Airports",
+                        "NewsImage": "",
+                        "NewsLink": "https://centreforaviation.com/news/sita-fibre-optic-airport-solution",
+                        "NewsSummary": "Modernized fibre networks enabling high-speed, scalable, reliable connectivity for mission-critical airport operations."
+                    },
+                    {
+                        "NewsTitle": "Delhi Airport Reopens T2",
+                        "NewsImage": "",
+                        "NewsLink": "https://centreforaviation.com/news/delhi-airport-reopens-t2-26-oct-2025",
+                        "NewsSummary": "IGI T2 reopened Oct 26, 2025 with autonomous aerobridges, high-res FIDS, smart washrooms, expanded self-service; ~120 domestic services shifted to T2."
+                    },
+                    {
+                        "NewsTitle": "Munich Airport to Commence Trial Operations of New T1 Pier in Nov-2025",
+                        "NewsImage": "",
+                        "NewsLink": "https://centreforaviation.com/news/munich-airport-t1-pier-trials-nov-2025",
+                        "NewsSummary": "95,000 sqm T1 pier trials begin Nov 2025; full commissioning in 1H2026 to expand gates and streamline boarding."
+                    },
+                    {
+                        "NewsTitle": "Abu Dhabi Airports to Trial Regulated Digital Wallet for Inbound Travellers",
+                        "NewsImage": "",
+                        "NewsLink": "https://centreforaviation.com/news/abu-dhabi-airports-digital-wallet-trial",
+                        "NewsSummary": "Pilot aims to simplify payments for inbound travelers and align with the UAE\u2019s fintech strategy."
+                    },
+                    {
+                        "NewsTitle": "Qatar Airways Activates IPv6 Within Digital Infrastructure",
+                        "NewsImage": "",
+                        "NewsLink": "https://centreforaviation.com/news/qatar-airways-activates-ipv6",
+                        "NewsSummary": "First airline to fully activate IPv6\u2014improving scalability, security, and IoT readiness."
+                    }
+                ],
+                "LatestProgrammingAndDevelopmentNews": [
+                    {
+                        "NewsTitle": "Sabre Launches Continuous Revenue Optimizer Solution",
+                        "NewsImage": "",
+                        "NewsLink": "https://centreforaviation.com/news/sabre-launches-continuous-revenue-optimizer",
+                        "NewsSummary": "AI-powered CRO gives real-time, segment-level pricing recommendations; launch partner Riyadh Air aims to maximize revenue responsiveness."
+                    },
+                    {
+                        "NewsTitle": "Riyadh Air Commences London Service",
+                        "NewsImage": "",
+                        "NewsLink": "https://centreforaviation.com/news/riyadh-air-launches-london-service-26-oct-2025",
+                        "NewsSummary": "Daily RUH\u2013LHR flights (787-9) began Oct 26, 2025 for operational readiness with employees/guests; Dubai service planned next."
+                    },
+                    {
+                        "NewsTitle": "Riyadh Air Appoints FlyUs as Cargo GSA",
+                        "NewsImage": "",
+                        "NewsLink": "https://centreforaviation.com/news/riyadh-air-appoints-flyus-cargo-gsa",
+                        "NewsSummary": "FlyUs named cargo GSA for UK & Ireland, bolstering Riyadh Air\u2019s logistics network in key European markets."
+                    },
+                    {
+                        "NewsTitle": "Delta to Launch Atlanta\u2013Riyadh Route",
+                        "NewsImage": "",
+                        "NewsLink": "https://centreforaviation.com/news/delta-launches-atlanta-riyadh-oct-2026",
+                        "NewsSummary": "Delta plans 3x weekly ATL\u2013RUH from Oct 2026 using A350-900\u2014its first direct US\u2013Saudi service."
+                    },
+                    {
+                        "NewsTitle": "oneworld Holds Its First Innovation Summit",
+                        "NewsImage": "",
+                        "NewsLink": "https://centreforaviation.com/news/oneworld-holds-its-first-innovation-summit",
+                        "NewsSummary": "Summit convened airlines/partners on AI, biometrics, and SAF\u2014accelerating open innovation and sustainability initiatives."
+                    }
+                ]
+            }
+        }
+    ]
+};
+
+
+        // Function to create a news card
+        function createNewsCard(news, category, date) {
+            const card = document.createElement('div');
+            card.className = `news-card ${category}-category`;
+            
+            // Get icon based on category
+            let icon = 'fa-newspaper';
+            if (category === 'ai') icon = 'fa-robot';
+            else if (category === 'tech') icon = 'fa-server';
+            else if (category === 'dev') icon = 'fa-laptop-code';
+            
+            card.innerHTML = `
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas ${icon}"></i>
+                        <span>${news.NewsTitle}</span>
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <p class="card-summary">${news.NewsSummary}</p>
+                </div>
+                <div class="card-footer">
+                    <span class="read-more">
+                        Read More
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                    <span class="date-badge">
+                        <i class="fas fa-calendar"></i>
+                        ${formatDate(date)}
+                    </span>
+                </div>
+            `;
+            
+            // Add click event to open news link
+            card.addEventListener('click', () => {
+                window.open(news.NewsLink, '_blank');
+            });
+            
+            return card;
+        }
+
+        // Format date function
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { month: 'short', day: 'numeric', year: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Render news
+        function renderNews() {
+            const aiNewsGrid = document.getElementById('ai-news-grid');
+            const techNewsGrid = document.getElementById('tech-news-grid');
+            const devNewsGrid = document.getElementById('dev-news-grid');
+
+            // Get news from first day (can be extended to loop through multiple days)
+            const dayData = newsData.Days[0];
+            const date = dayData.Date;
+            const news = dayData.News;
+
+            // Render AI News
+            if (news.LatestAINews && news.LatestAINews.length > 0) {
+                news.LatestAINews.forEach(item => {
+                    aiNewsGrid.appendChild(createNewsCard(item, 'ai', date));
+                });
+            } else {
+                aiNewsGrid.innerHTML = '<div class="empty-state"><i class="fas fa-inbox"></i><p>No AI news available</p></div>';
+            }
+
+            // Render Technology & IT News
+            if (news.LatestTechnologyAndITNews && news.LatestTechnologyAndITNews.length > 0) {
+                news.LatestTechnologyAndITNews.forEach(item => {
+                    techNewsGrid.appendChild(createNewsCard(item, 'tech', date));
+                });
+            } else {
+                techNewsGrid.innerHTML = '<div class="empty-state"><i class="fas fa-inbox"></i><p>No technology news available</p></div>';
+            }
+
+            // Render Programming & Development News
+            if (news.LatestProgrammingAndDevelopmentNews && news.LatestProgrammingAndDevelopmentNews.length > 0) {
+                news.LatestProgrammingAndDevelopmentNews.forEach(item => {
+                    devNewsGrid.appendChild(createNewsCard(item, 'dev', date));
+                });
+            } else {
+                devNewsGrid.innerHTML = '<div class="empty-state"><i class="fas fa-inbox"></i><p>No programming news available</p></div>';
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', renderNews);
+    </script>
+</body>
+</html>
